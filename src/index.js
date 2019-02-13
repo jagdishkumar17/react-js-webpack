@@ -1,5 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App.js";
+import Input from "./components/Forms/Input.jsx";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Input />, document.getElementById("root"));
