@@ -1,5 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Parent from "./app/components/ComplexForms/Parent.jsx";
+import Ref from "./app/components/Refs/Ref.jsx";
 
-ReactDOM.render(<Parent />, document.getElementById("root"));
+ReactDOM.render(<Ref />, document.getElementById("root"));
