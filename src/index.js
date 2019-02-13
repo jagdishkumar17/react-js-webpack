@@ -1,5 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Input from "./app/components/Forms/Input.jsx";
+import Parent from "./app/components/ComplexForms/Parent.jsx";
 
-ReactDOM.render(<Input />, document.getElementById("root"));
+ReactDOM.render(<Parent />, document.getElementById("root"));
