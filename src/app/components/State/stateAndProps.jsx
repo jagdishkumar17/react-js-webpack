@@ -1,32 +1,21 @@
 import React, { Component } from "react";
 
-import '../styles/App.css';
-
-class setState extends Component {
+class stateAndProps extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            newArray: []
+            header: "Header from props...",
+            content: "Content from props..."
         }
-        this.setStateHandler = this.setStateHandler.bind(this);
-
-    }
-    setStateHandler() {
-        var item = "setState..."
-        var myArray = this.state.newArray.slice();
-        myArray.push(item);
-        this.setState({ newArray: myArray })
     }
     render() {
         return (
             <div>
-                <button onClick={this.setStateHandler}>click me</button>
-                <h2>{this.state.newArray}</h2>                
+                <Header headerProp={this.state.header}/>
+                <Content content={this.state.content}/>
             </div>
         );
     }
-
-
 }
 class Header extends React.Component {
     render() {
@@ -46,4 +35,4 @@ class Content extends React.Component {
         );
     }
 }
-export default setState;
+export default stateAndProps;

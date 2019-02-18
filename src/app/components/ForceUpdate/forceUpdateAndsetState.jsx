@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import 'app/styles/App.css';
 
-class foceUpdateAndsetState extends Component {
+
+class forceUpdateAndsetState extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,4 +26,4 @@ class foceUpdateAndsetState extends Component {
     }
 
 }
-export default foceUpdateAndsetState;
+export default forceUpdateAndsetState;

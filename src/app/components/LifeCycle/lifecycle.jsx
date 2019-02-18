@@ -18,6 +18,7 @@ class lifecycle extends React.Component {
             <h1>{this.state.data}</h1>
             <button onClick = {this.setNewNumber}>INCREMENT</button>
             <Content myNumber = {this.state.data}></Content>
+            <h1>see on console window</h1>
          </div>
       );
    }
