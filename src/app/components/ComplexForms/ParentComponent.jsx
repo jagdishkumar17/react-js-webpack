@@ -1,5 +1,5 @@
 import React from "react";
-import Child from "./Child.jsx";
+import Child from "./Child.jsx"; 
 
 class ParentComponent extends React.Component {
 
@@ -19,6 +19,7 @@ class ParentComponent extends React.Component {
          <div>
             <Child myDataProp = {this.state.data}
                updateStateProp = {this.updateState}></Child>
+             
          </div>
       );
    }

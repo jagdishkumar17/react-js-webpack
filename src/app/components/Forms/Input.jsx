@@ -11,8 +11,8 @@ class Input extends React.Component {
         this.updateState = this.updateState.bind(this);
      };
 
-     updateState(e) {
-        this.setState({data: e.target.value});
+     updateState(e) {     
+        this.setState({data: e.target.value});        
      }
      render() {
       return (
