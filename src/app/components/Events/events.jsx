@@ -12,7 +12,7 @@ class events extends React.Component {
    };
 
    updateStatus(e) {
-      // this method will invoked by 'myPropTwo' property which is called by child form in 
+      // this method will invoked by 'myPropReturn' property which is called by child form in 
       // onChange event
       this.setState({ prop1: e.target.value });
    }
