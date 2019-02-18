@@ -3,6 +3,7 @@ module.exports = {
   entry: "./src/index.js",
   devServer: {
     port: 3000
+
   },
   module: {
     rules: [
