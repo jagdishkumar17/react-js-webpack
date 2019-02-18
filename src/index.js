@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Instance from "./app/components/App.jsx";
 import Instance from "./app/components/Forms/keys.jsx";
 // import Instance from "./app/components/Forms/ref.jsx";
 // import Instance from "./app/components/Forms/events.jsx";
@@ -10,3 +11,8 @@ import Instance from "./app/components/Forms/keys.jsx";
 // import Instance from "./app/components/Forms/Lifecycle.jsx";
 
 ReactDOM.render(<Instance />, document.getElementById("root"));
+
+
+
+
+
