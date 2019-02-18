@@ -9,7 +9,6 @@ class events extends React.Component {
          prop1: '',
       }
       this.updateStatus = this.updateStatus.bind(this);
-      // this.test = this.test.bind(this);
    };
 
    updateStatus(e) {
