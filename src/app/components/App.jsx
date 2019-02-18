@@ -1,26 +1,31 @@
-import React, { Component } from "react";
-import {  Link  } from 'react-router-dom';
+// App.js
 
-// what is the difference between NavLink and Link?
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Home from './Router/Home.jsx';
+import About from './Router/About.jsx';
 
-// the link is used to navigate the different routes on the site. 
-// but NavLink is used to add the style attributes to the active routes.
 class App extends Component {
-    render() {
-        return (
-            <div>
-            <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/forms">Forms</Link></li>
-            <li><Link to="/complexforms">ComplexForms</Link></li>
-            <li><Link to="/refs">Refs</Link></li>
-            <li><Link to="/keys">Keys</Link></li>
-            <li><Link to="/users">Users</Link></li>
-            </ul>
-            {this.props.children}
-         </div>
-        );
-    }
+  render() {
+    return (
+    <Router>
+        <div>
+          <h2>Welcome to React Router Tutorial</h2>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <ul className="navbar-nav mr-auto">
+            <li><Link to={'/'} className="nav-link"> Home </Link></li>
+            <li><Link to={'/about'} className="nav-link">About</Link></li>
+          </ul>
+          </nav>
+          <hr />
+          <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/about' component={About} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
