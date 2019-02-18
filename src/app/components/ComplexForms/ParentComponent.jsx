@@ -1,7 +1,7 @@
 import React from "react";
 import Child from "./Child.jsx";
 
-class Parent extends React.Component {
+class ParentComponent extends React.Component {
 
    constructor(props) {
       super(props);
@@ -24,4 +24,4 @@ class Parent extends React.Component {
    }
 }
 
-export default Parent;
+export default ParentComponent;
