@@ -6,11 +6,9 @@ class events extends React.Component {
       super(props);
 
       this.state = {
-         prop1: 'Initial data...',
-         prop2: 0
+         prop1: '',
       }
       this.updateStatus = this.updateStatus.bind(this);
-      this.buttonEventCheck = this.buttonEventCheck.bind(this);
    };
 
    updateStatus(e) {
@@ -18,15 +16,15 @@ class events extends React.Component {
       // onChange event
       this.setState({ prop1: e.target.value });
    }
-   buttonEventCheck() {
-      this.state.prop2 = this.state.prop2 + 1;
-      this.setState({ prop2: this.state.prop2 });
-   }
+
+
    render() {
       return (
          <div>
-            <ChildComponent myPropOne={this.state.prop1} myPropTwo={this.updateStatus}
-               propEvent={this.buttonEventCheck} proEventValue={this.state.prop2} />
+            <h1>This is parent page content</h1>
+            <h3>{this.state.prop1}</h3>
+            <h1>This is child page content</h1>
+            <ChildComponent myPropReturn={this.updateStatus} />
          </div>
       );
    }
@@ -36,12 +34,8 @@ class ChildComponent extends React.Component {
    render() {
       return (
          <div>
-            <input type="text" value={this.props.myPropOne}
-               onChange={this.props.myPropTwo} />
-            <h3>{this.props.myPropOne}</h3>
-
-            <button onClick={this.props.propEvent}>Event</button>
-            <h3>{this.props.proEventValue}</h3>
+            <input type="text" ref="myText"
+               onChange={this.props.myPropReturn} />
 
          </div>
       );
