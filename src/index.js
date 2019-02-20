@@ -1,12 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, BrowserRouter as Router, Switch, HashRouter } from 'react-router-dom';
- import Instance from "./app/components/App.jsx";
-// import Instance from "./app/components/Forms/input.jsx";
-// import Instance from "./app/components/Events/events.jsx";
-// import Instance from "./app/components/State/stateAndProps.jsx";
-// import Instance from "./app/components/ForceUpdate/forceUpdateAndsetState.jsx";
-// import Instance from "./app/components/ReactDom/reactDom.jsx";
-// import Instance from "./app/components/LifeCycle/Lifecycle.jsx";
+import { HashRouter } from 'react-router-dom';
+import Instance from "./app/components/App.jsx";
+import { IntlProvider, addLocaleData } from "react-intl";
+import en from "react-intl/locale-data/en";
+import es from "react-intl/locale-data/es";
+import localeData from "./i18n/locales/messages.json";
 
-ReactDOM.render(<Instance />, document.getElementById("root"));
+addLocaleData([...en, ...es]);
+
+// Define user's language. Different browsers have the user locale defined
+// on different fields on the `navigator` object, so we make sure to account
+// for these different by checking all of them
+debugger;
+const language =
+    (navigator.languages && navigator.languages[0]) ||
+    navigator.language ||
+    navigator.userLanguage;
+
+// Split locales with a region code
+const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
+
+// Try full locale, try locale without region code, fallback to 'en'
+const messages =
+    localeData[languageWithoutRegionCode] ||
+    localeData[language] ||
+    localeData.en;
+
+ReactDOM.render(
+    <IntlProvider locale={language} messages={messages}>
+        <HashRouter>
+            <Instance />
+        </HashRouter>
+    </IntlProvider>,
+    document.getElementById("root")
+);
