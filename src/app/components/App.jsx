@@ -1,29 +1,39 @@
 // App.js
 
 import React, { Component } from 'react';
-import { Switch, Route, Link, HashRouter } from 'react-router-dom';
-import Home from './Router/Home.jsx';
-import About from './Router/About.jsx';
-import Users from './Users/Users.jsx';
+import { HashRouter, Switch, Route, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+ import Create from  './Crud/create.component.jsx'
+import Edit from './Crud/edit.component.jsx';
+import List from './Crud/list.component.jsx';
 
 class App extends Component {
   render() {
     return (
       <HashRouter>
-        <div>
-          <h2>Welcome to React Router Tutorial</h2>
+        <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <ul className="navbar-nav mr-auto">
-              <li><Link to='/' className="nav-link"> Home </Link></li>
-              <li><Link to='/about' className="nav-link">About</Link></li>
-              <li><Link to='/users/1' className="nav-link">User 1 </Link></li>
-            </ul>
-          </nav>
-          <hr />
+            <Link to={'/'} className="navbar-brand">React CRUD Example</Link>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <Link to={'/'} className="nav-link">Dashboard</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={'/list'} className="nav-link">Employees List</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={'/create'} className="nav-link">Create Employee</Link>
+                </li>
+                
+              </ul>
+            </div>
+          </nav> <br />
+          <h2>Welcome to React CRUD Tutorial</h2> <br />
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/about' component={About} />
-            <Route path='/users/:id' component={Users} />
+            <Route path='/create' component={Create} />
+            <Route path='/edit/:id' component={Edit} />
+            <Route path='/list' component={List} />
           </Switch>
         </div>
       </HashRouter>
