@@ -1,0 +1,11 @@
+{
+    "Header.title": "React CRUD Example",
+    "Header.Dashboard":"Dashboard",
+    "Home.link": "HOME",
+    "Home.title": "Hello, HOME!",
+    "Home.description": "It's a beautiful day outside.",
+    "About.link": "ABOUT",
+    "About.title": "Hello, About us!",
+    "About.description": "It's a beautiful day outside.",
+    "User.link": "USER"
+}
