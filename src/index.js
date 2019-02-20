@@ -3,24 +3,14 @@ import ReactDOM from "react-dom";
 import { HashRouter } from 'react-router-dom';
 import Instance from "./app/components/App.jsx";
 import { IntlProvider, addLocaleData } from "react-intl";
-import en from "react-intl/locale-data/en";
-import es from "react-intl/locale-data/es";
-import localeData from "./i18n/locales/messages.json";
-
-addLocaleData([...en, ...es]);
-
-// Define user's language. Different browsers have the user locale defined
-// on different fields on the `navigator` object, so we make sure to account
-// for these different by checking all of them
-const language =
-    (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage;
+import translations from "./i18n/locales";
 
 // Split locales with a region code
-const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
+const language = "en"//Default Language (en or es -> as of now)
 
-// Try full locale, try locale without region code, fallback to 'en'
-const messages =
-    localeData[languageWithoutRegionCode] || localeData[language] || localeData.en;
+addLocaleData(require(`react-intl/locale-data/${language}`));
+
+const messages = translations[language];
 
 ReactDOM.render(
     <IntlProvider locale={language} messages={messages}>
