@@ -1,5 +1,6 @@
 {
-    "Header.title": "Welcome to React Router Tutorial",
+    "Header.title": "React CRUD Example",
+    "Header.Dashboard":"Dashboard",
     "Home.link": "HOME",
     "Home.title": "Hello, HOME!",
     "Home.description": "It's a beautiful day outside.",

@@ -1,31 +1,54 @@
 // App.js
 
 import React, { Component } from 'react';
-import { Switch, Route, Link, HashRouter } from 'react-router-dom';
-import Home from './Router/Home.jsx';
-import About from './Router/About.jsx';
-import Users from './Users/Users.jsx';
+import { HashRouter, Switch, Route, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Create from './Crud/create.component.jsx'
+import Edit from './Crud/edit.component.jsx';
+import List from './Crud/list.component.jsx';
 import { FormattedMessage } from 'react-intl';
 class App extends Component {
   render() {
     return (
       <HashRouter>
-        <div>
-          <h2><FormattedMessage id="Header.title" defaultMessage="Welcome to React Router Tutorial" /></h2>
+        <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <ul className="navbar-nav mr-auto">
-              <li><Link to='/' className="nav-link"> <FormattedMessage id="Home.link" defaultMessage="HOME" /> </Link></li>
-              <li><Link to='/about' className="nav-link"><FormattedMessage id="About.link" defaultMessage="ABOUT" /></Link></li>
-              <li><Link to='/users/1' className="nav-link"><FormattedMessage id="User.link" defaultMessage="USER" /> </Link></li>
-            </ul>
-          </nav>
-          <hr />
+            <Link to={'/'} className="navbar-brand">
+            
+            <FormattedMessage id="Header.title" defaultMessage="React CRUD Example" />
+            </Link>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <Link to={'/'} className="nav-link">
+                  <FormattedMessage id="Header.Dashboard" defaultMessage="Dashboard" />
+                  
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={'/list'} className="nav-link">
+                  
+                  <FormattedMessage id="Header.EmployeesList" defaultMessage="Employees List" />
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={'/create'} className="nav-link">
+                  
+                  <FormattedMessage id="Header.CreateEmployee" defaultMessage="Create Employee" />
+                  </Link>
+                </li>
+
+              </ul>
+            </div>
+          </nav> <br />
+          <h2>Welcome to React CRUD Tutorial</h2> <br />
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/about' component={About} />
-            <Route path='/users/:id' component={Users} />
+            <Route path='/create' component={Create} />
+            <Route path='/edit/:id' component={Edit} />
+            <Route path='/list' component={List} />
           </Switch>
         </div>
+       
       </HashRouter>
     );
   }

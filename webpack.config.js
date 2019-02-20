@@ -26,6 +26,11 @@ module.exports = {
             loader: "html-loader"
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
@@ -34,5 +39,6 @@ module.exports = {
       template: "./src/index.html"
 
     })
+   
   ]
 };

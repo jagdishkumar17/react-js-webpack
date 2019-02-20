@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter } from 'react-router-dom';
-import Instance from "./app/components/App.jsx";
+import App from "./app/components/App.jsx";
 import { IntlProvider, addLocaleData } from "react-intl";
 import translations from "./i18n/locales";
 
@@ -14,9 +14,7 @@ const messages = translations[language];
 
 ReactDOM.render(
     <IntlProvider locale={language} messages={messages}>
-        <HashRouter>
-            <Instance />
-        </HashRouter>
+        <App />
     </IntlProvider>,
     document.getElementById("root")
 );
