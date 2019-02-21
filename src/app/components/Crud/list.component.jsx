@@ -1,18 +1,17 @@
 // index.component.js
 
 import React, { Component } from 'react';
-
+import studentService from '../services/student.service';
 class List extends Component {
 
     constructor() {
         super();
         this.state = { studentData: [] };
-
         // This binding is necessary to make "this" work in the callback  
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }
-    componentDidMount() {
+    componentWillMount() {
         this.fetchStudentData();
     }
 
@@ -32,7 +31,7 @@ class List extends Component {
                 <tbody>
                     {this.state.studentData.map((student, i) =>
                         <tr key={i}>
-                            <td>{student.Name}</td>
+                            <td>{student.Name}{this._baseUrl}</td>
                             <td>{student.Gender}</td>
                             <td>{student.Address}</td>
                             <td>
@@ -57,22 +56,10 @@ class List extends Component {
 
     fetchStudentData() {
         let self = this;
-        fetch("http://localhost:58854/api/Students", {
-            method: 'GET'
-
-        }).then(function (response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function (data) {
-            debugger;
-            console.log(data)
+        studentService.getStudentsData().then(data=>{
             self.setState({ studentData: data });
-
-        }).catch(function (err) {
-            console.log(err)
         });
+   
     }
 
 
