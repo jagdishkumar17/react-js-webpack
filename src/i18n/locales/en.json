@@ -7,5 +7,6 @@
     "About.link": "ABOUT",
     "About.title": "Hello, About us!",
     "About.description": "It's a beautiful day outside.",
-    "User.link": "USER"
+    "User.link": "USER",
+    "Student.addnew":"Add New"
 }
