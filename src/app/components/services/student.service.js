@@ -9,9 +9,14 @@ const StudentService = {
         }).then(function (response) {
             return response.json();
         });
-
-    },
-    deleteStudentsData(id) {
+    }, submitStudentsData(data) {
+        return fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        });
+    }, deleteStudentsData(id) {
         return fetch(url + "/" + id, {
             method: 'DELETE'
         }).then(function (response) {

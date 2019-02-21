@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import studentService from '../services/student.service';
+import { FormattedMessage } from 'react-intl';
 class List extends Component {
 
     constructor() {
@@ -17,31 +18,49 @@ class List extends Component {
 
     render() {
         return (
+            <div>
+                <table className='table'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Actions</th>
 
-            <table className='table'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Address</th>
-                        <th>Actions</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.state.studentData.map((student, i) =>
-                        <tr key={i}>
-                            <td>{student.Name}{this._baseUrl}</td>
-                            <td>{student.Gender}</td>
-                            <td>{student.Address}</td>
-                            <td>
-                                <a className="action" onClick={(id) => this.handleEdit(student.Id)}>Edit</a>  |
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.studentData.map((student, i) =>
+                            <tr key={i}>
+                                <td>{student.Name}{this._baseUrl}</td>
+                                <td>{student.Gender}</td>
+                                <td>{student.Address}</td>
+                                <td>
+                                    <a className="action" onClick={(id) => this.handleEdit(student.Id)}>Edit</a>  |
                                 <a className="action" onClick={(id) => this.handleDelete(student.Id)}>Delete</a>
+                                </td>
+                            </tr>
+                        )}
+
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <FormattedMessage id="Student.addnew" defaultMessage="Add New">
+                                    {
+                                        (msg) =>
+                                            (
+                                                <button type="button" title={msg}>{msg}</button>
+                                            )
+                                    }
+                                </FormattedMessage>
                             </td>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         )
     }
 
