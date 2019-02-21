@@ -47,6 +47,9 @@ class List extends Component {
 
     // Handle Delete request for student 
     handleDelete(id) {
+        if (confirm('Are you sure you want to delete this student?')) {
+            this.deleteStudentData(id);
+        }
     }
 
     // Handle Edit request for student 
@@ -56,10 +59,22 @@ class List extends Component {
 
     fetchStudentData() {
         let self = this;
-        studentService.getStudentsData().then(data=>{
+        studentService.getStudentsData().then(data => {
             self.setState({ studentData: data });
         });
-   
+
+    }
+    deleteStudentData(id) {
+        let self = this;
+        studentService.deleteStudentsData(id).then(data => {
+            var students = self.state.studentData;
+            var idx = students.find(item => item.Id === id);
+            students.splice(idx, 1);
+            self.setState({ studentData: students });
+        }).catch(function (err) {
+            console.log(err);
+        });;
+
     }
 
 
