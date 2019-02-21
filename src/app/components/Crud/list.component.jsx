@@ -11,6 +11,7 @@ class List extends Component {
         // This binding is necessary to make "this" work in the callback  
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+        this.navigateToAddStudent = this.navigateToAddStudent.bind(this);
     }
     componentWillMount() {
         this.fetchStudentData();
@@ -52,7 +53,7 @@ class List extends Component {
                                     {
                                         (msg) =>
                                             (
-                                                <button type="button" title={msg}>{msg}</button>
+                                                <button type="button" title={msg} onClick={this.navigateToAddStudent}>{msg}</button>
                                             )
                                     }
                                 </FormattedMessage>
@@ -75,7 +76,9 @@ class List extends Component {
     handleEdit(id) {
         this.props.history.push("/employee/edit/" + id);
     }
-
+    navigateToAddStudent() {
+        this.props.history.push("/Create/");
+    }
     fetchStudentData() {
         let self = this;
         studentService.getStudentsData().then(data => {
@@ -95,7 +98,6 @@ class List extends Component {
         });;
 
     }
-
 
 }
 export default List;
