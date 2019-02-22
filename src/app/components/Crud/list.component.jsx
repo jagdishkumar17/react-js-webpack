@@ -90,12 +90,12 @@ class List extends Component {
         let self = this;
         studentService.deleteStudentsData(id).then(data => {
             var students = self.state.studentData;
-            var idx = students.find(item => item.Id === id);
+            var idx = students.findIndex(item => item.Id === id);
             students.splice(idx, 1);
             self.setState({ studentData: students });
         }).catch(function (err) {
             console.log(err);
-        });;
+        });
 
     }
 

@@ -1,7 +1,8 @@
 // create.component.js
 
 import React, { Component } from 'react';
-import DashboardStyle from "../../styles/Dashboard.css";
+import "../../styles/Dashboard.css";
+import studentService from '../services/student.service';
 class Create extends Component {
     constructor() {
         super();
@@ -10,14 +11,23 @@ class Create extends Component {
             address: '',
             gender: ''
         }
+        this.state = {
+            genders: []
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.logChange = this.logChange.bind(this)
     }
-
+    componentDidMount() {
+        this.setState({
+            genders: [
+                { value: 'Male', name: 'Male' },
+                { value: 'Female', name: 'Female' }
+            ]
+        });
+        this.setState({ gender: 'Male' });
+    }
     render() {
-        var divButtonStyle = {
-            paddingTop: '10px'
-        };
+        var divButtonStyle = { paddingTop: '10px' };//style={divButtonStyle}
         return (
             <div className="container register-form" >
                 <form onSubmit={this.handleSubmit} method="POST">
@@ -27,12 +37,13 @@ class Create extends Component {
                     <textarea className="form-control" onChange={this.logChange} name='address' maxLength="1000" />
                     <label>Gender</label>
                     <div>
-                        <select name='gender' onChange={this.logChange}>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                        <select name='gender' value={this.state.gender} onChange={this.logChange}>
+                            {this.state.genders.map((e, key) => {
+                                return <option key={key} value={e.value}>{e.name}</option>;
+                            })}
                         </select>
                     </div>
-                    <div className="submit-section" style={divButtonStyle}>
+                    <div className="submit-section paddingtop10">
                         <input type="submit" value="Submit" />
                     </div>
                 </form>
@@ -40,15 +51,19 @@ class Create extends Component {
         )
     }
     handleSubmit(event) {
-        debugger;
+        event.preventDefault();
         var data = {
             name: this.state.name,
             address: this.state.address,
             gender: this.state.gender
         }
-        event.preventDefault();
-    }
+        studentService.submitStudentsData(data).then(data => {
+            this.props.history.push('/List');
+        }).catch(function (err) {
+            console.log(err);
+        });
 
+    }
     logChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
