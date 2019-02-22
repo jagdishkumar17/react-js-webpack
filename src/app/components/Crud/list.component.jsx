@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import studentService from '../services/student.service';
 import { FormattedMessage } from 'react-intl';
+import ToastrContainer, { Toast, ToastDanger } from 'react-toastr-basic';
 class List extends Component {
 
     constructor() {
@@ -12,14 +13,22 @@ class List extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.navigateToAddStudent = this.navigateToAddStudent.bind(this);
+
     }
-    componentWillMount() {
+    componentWillMount() {  
         this.fetchStudentData();
+    }
+    componentDidMount() {
+        this.welcomePage();
+    }
+    welcomePage() {
+        Toast('Welcome to list page');
     }
 
     render() {
         return (
             <div>
+                <ToastrContainer />
                 <table className='table'>
                     <thead>
                         <tr>
