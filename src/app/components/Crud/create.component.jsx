@@ -7,6 +7,7 @@ class Create extends Component {
     constructor() {
         super();
         this.state = {
+            id: '',
             name: '',
             address: '',
             gender: ''
@@ -25,6 +26,7 @@ class Create extends Component {
             ]
         });
         this.setState({ gender: 'Male' });
+        var dd = this.props.match.params.id;
     }
     render() {
         var divButtonStyle = { paddingTop: '10px' };//style={divButtonStyle}
@@ -32,9 +34,9 @@ class Create extends Component {
             <div className="container register-form" >
                 <form onSubmit={this.handleSubmit} method="POST">
                     <label>Name</label>
-                    <input className="form-control" onChange={this.logChange} name='name' />
+                    <input className="form-control" value={this.state.name} onChange={this.logChange} name='name' />
                     <label>Address</label>
-                    <textarea className="form-control" onChange={this.logChange} name='address' maxLength="1000" />
+                    <textarea className="form-control" value={this.state.address} onChange={this.logChange} name='address' maxLength="1000" />
                     <label>Gender</label>
                     <div>
                         <select name='gender' value={this.state.gender} onChange={this.logChange}>
@@ -61,6 +63,13 @@ class Create extends Component {
             this.props.history.push('/List');
         }).catch(function (err) {
             console.log(err);
+        });
+
+    }
+    fetchStudentData() {
+        let self = this;
+        studentService.getStudentsDataById().then(data => {
+            console.log(data);
         });
 
     }
