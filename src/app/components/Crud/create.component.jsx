@@ -27,7 +27,6 @@ class Create extends Component {
         this.logChange = this.logChange.bind(this)
     }
     componentDidMount() {
-        this.welcomePage();
         this.setState({
             genders: [
                 { value: 'Male', name: 'Male' },
@@ -41,9 +40,6 @@ class Create extends Component {
             this.setState({ submitButtonText: 'Update' });
             this.fetchStudentDataById(this.state.selectedId);
         }
-    }
-    welcomePage() {
-        ToastDanger('Welcome to Add page');
     }
     render() {
         var divButtonStyle = { paddingTop: '10px' };//style={divButtonStyle}
@@ -96,14 +92,18 @@ class Create extends Component {
         }
         if (this.state.selectedId) {
             studentService.updateStudentsData(this.state.selectedId, data).then(data => {
+                ToastSuccess('Record Saved');
                 this.props.history.push('/List');
             }).catch(function (err) {
+                ToastDanger('Error occurred');
                 console.log(err);
             });
         } else {
             studentService.submitStudentsData(data).then(data => {
+                ToastSuccess('Record Updated');
                 this.props.history.push('/List');
             }).catch(function (err) {
+                ToastDanger('Error occurred');
                 console.log(err);
             });
         }
