@@ -8,12 +8,17 @@ import ToastrContainer, { Toast, ToastDanger, ToastSuccess } from 'react-toastr-
 class Create extends Component {
     constructor() {
         super();
-        const selectedId = '';
+        // Student Model Properties
         this.state = {
             id: '',
             name: '',
             address: '',
             gender: ''
+        }
+        // Run Time Set Properties ( Buttons text & Url Id)
+        this.state = {
+            selectedId: '',
+            submitButtonText: ''
         }
         this.state = {
             genders: []
@@ -29,11 +34,12 @@ class Create extends Component {
                 { value: 'Female', name: 'Female' }
             ]
         });
-        this.setState({ gender: 'Male' });
-        this.selectedId = this.props.match.params.id;
-        if (this.selectedId) {
+        this.setState({ gender: 'Male', submitButtonText: 'Submit' });
+        this.state.selectedId = this.props.match.params.id;
+        if (this.state.selectedId) {
             // Edit the record
-            this.fetchStudentDataById(this.selectedId);
+            this.setState({ submitButtonText: 'Update' });
+            this.fetchStudentDataById(this.state.selectedId);
         }
     }
     welcomePage() {
@@ -58,7 +64,7 @@ class Create extends Component {
                         </select>
                     </div>
                     <div className="submit-section paddingtop10">
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value={this.state.submitButtonText || ''} />
                     </div>
                 </form>
             </div>
@@ -88,8 +94,8 @@ class Create extends Component {
             address: this.state.address,
             gender: this.state.gender
         }
-        if (this.selectedId) {
-            studentService.updateStudentsData(this.selectedId, data).then(data => {
+        if (this.state.selectedId) {
+            studentService.updateStudentsData(this.state.selectedId, data).then(data => {
                 this.props.history.push('/List');
             }).catch(function (err) {
                 console.log(err);
