@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import "../../styles/Dashboard.css";
 import studentService from '../services/student.service';
+import ToastrContainer, { Toast, ToastDanger, ToastSuccess } from 'react-toastr-basic';
+
 class Create extends Component {
     constructor() {
         super();
@@ -27,11 +29,16 @@ class Create extends Component {
         });
         this.setState({ gender: 'Male' });
         var dd = this.props.match.params.id;
+        this.welcomePage();
+    }
+    welcomePage() {
+        ToastDanger('Welcome to Add page');
     }
     render() {
         var divButtonStyle = { paddingTop: '10px' };//style={divButtonStyle}
         return (
             <div className="container register-form" >
+                <ToastrContainer />
                 <form onSubmit={this.handleSubmit} method="POST">
                     <label>Name</label>
                     <input className="form-control" value={this.state.name} onChange={this.logChange} name='name' />

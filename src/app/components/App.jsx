@@ -7,11 +7,20 @@ import Create from './Crud/create.component.jsx'
 import Edit from './Crud/edit.component.jsx';
 import List from './Crud/list.component.jsx';
 import { FormattedMessage } from 'react-intl';
+import ToastrContainer, { Toast, ToastDanger, ToastrTypes, ToastSuccess } from 'react-toastr-basic';
+
 class App extends Component {
+  componentDidMount() {
+    this.welcomePage();
+  }
+  welcomePage() {
+    Toast('Welcome to Home');
+  }
   render() {
     return (
       <HashRouter>
         <div className="container">
+          <ToastrContainer />
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link to={'/'} className="navbar-brand">
 
