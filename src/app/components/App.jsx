@@ -10,12 +10,6 @@ import { FormattedMessage } from 'react-intl';
 import ToastrContainer, { Toast, ToastDanger, ToastrTypes, ToastSuccess } from 'react-toastr-basic';
 
 class App extends Component {
-  componentDidMount() {
-    this.welcomePage();
-  }
-  welcomePage() {
-    Toast('Welcome to Home');
-  }
   render() {
     return (
       <HashRouter>
