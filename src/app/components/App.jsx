@@ -52,7 +52,8 @@ class App extends Component {
           </nav> <br />
           <h2>Welcome to React CRUD Tutorial</h2> <br />
           <Switch>
-            <Route path='/create' component={Create} />
+            <Route exact path='/create' component={Create} />
+            <Route path='/create/:id' component={Create} />
             <Route path='/edit/:id' component={Edit} />
             <Route path='/list' component={List} />
           </Switch>

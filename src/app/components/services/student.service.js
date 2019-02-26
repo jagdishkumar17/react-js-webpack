@@ -10,6 +10,13 @@ const StudentService = {
             return response.json();
         });
     },
+    getStudentsDataById(id) {
+        return fetch(url + "/" + id, {
+            method: 'GET'
+        }).then(function (response) {
+            return response.json();
+        });
+    },
     submitStudentsData(data) {
         return fetch(url, {
             method: 'POST',

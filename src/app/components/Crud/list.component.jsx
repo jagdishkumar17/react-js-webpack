@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import studentService from '../services/student.service';
 import { FormattedMessage } from 'react-intl';
+import "../../styles/Dashboard.css";
 import ToastrContainer, { Toast, ToastDanger } from 'react-toastr-basic';
 class List extends Component {
 
@@ -46,8 +47,8 @@ class List extends Component {
                                 <td>{student.Gender}</td>
                                 <td>{student.Address}</td>
                                 <td>
-                                    <a className="action" onClick={(id) => this.handleEdit(student.Id)}>Edit</a>  |
-                                <a className="action" onClick={(id) => this.handleDelete(student.Id)}>Delete</a>
+                                    <a className="action pointer" onClick={(id) => this.handleEdit(student.Id)}>Edit</a>  |
+                                <a className="action pointer" onClick={(id) => this.handleDelete(student.Id)}>Delete</a>
                                 </td>
                             </tr>
                         )}
@@ -83,7 +84,7 @@ class List extends Component {
 
     // Handle Edit request for student 
     handleEdit(id) {
-        this.props.history.push("/employee/edit/" + id);
+        this.props.history.push("/create/" + id);
     }
     navigateToAddStudent() {
         this.props.history.push("/Create/");
