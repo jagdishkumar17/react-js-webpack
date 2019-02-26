@@ -19,12 +19,7 @@ class List extends Component {
     componentWillMount() {  
         this.fetchStudentData();
     }
-    componentDidMount() {
-        this.welcomePage();
-    }
-    welcomePage() {
-        Toast('Welcome to list page');
-    }
+   
 
     render() {
         return (
@@ -103,7 +98,9 @@ class List extends Component {
             var idx = students.findIndex(item => item.Id === id);
             students.splice(idx, 1);
             self.setState({ studentData: students });
+            ToastSuccess('Record Deleted');
         }).catch(function (err) {
+            ToastDanger('Error occurred');
             console.log(err);
         });
 
