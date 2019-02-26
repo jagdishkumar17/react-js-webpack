@@ -29,6 +29,18 @@ const StudentService = {
             return response.json();
         });
     },
+    updateStudentsData(id, data) {
+        return fetch(url + "/" + id, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        });
+    },
     deleteStudentsData(id) {
         return fetch(url + "/" + id, {
             method: 'DELETE'

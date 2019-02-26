@@ -8,6 +8,7 @@ import ToastrContainer, { Toast, ToastDanger, ToastSuccess } from 'react-toastr-
 class Create extends Component {
     constructor() {
         super();
+        const selectedId = '';
         this.state = {
             id: '',
             name: '',
@@ -21,6 +22,7 @@ class Create extends Component {
         this.logChange = this.logChange.bind(this)
     }
     componentDidMount() {
+        this.welcomePage();
         this.setState({
             genders: [
                 { value: 'Male', name: 'Male' },
@@ -28,8 +30,11 @@ class Create extends Component {
             ]
         });
         this.setState({ gender: 'Male' });
-        var dd = this.props.match.params.id;
-        this.welcomePage();
+        this.selectedId = this.props.match.params.id;
+        if (this.selectedId) {
+            // Edit the record
+            this.fetchStudentDataById(this.selectedId);
+        }
     }
     welcomePage() {
         ToastDanger('Welcome to Add page');
@@ -41,9 +46,9 @@ class Create extends Component {
                 <ToastrContainer />
                 <form onSubmit={this.handleSubmit} method="POST">
                     <label>Name</label>
-                    <input className="form-control" value={this.state.name} onChange={this.logChange} name='name' />
+                    <input className="form-control" value={this.state.name || ''} onChange={this.logChange} name='name' />
                     <label>Address</label>
-                    <textarea className="form-control" value={this.state.address} onChange={this.logChange} name='address' maxLength="1000" />
+                    <textarea className="form-control" value={this.state.address || ''} onChange={this.logChange} name='address' maxLength="1000" />
                     <label>Gender</label>
                     <div>
                         <select name='gender' value={this.state.gender} onChange={this.logChange}>
@@ -61,27 +66,41 @@ class Create extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
+        this.submitStudent();
+    }
+    fetchStudentDataById(id) {
+        let self = this;
+        studentService.getStudentsDataById(id).then(data => {
+            if (data) {
+                self.setState({ id: data.Id, name: data.Name, address: data.Address, gender: data.Gender });
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });;
+    }
+    logChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+    submitStudent() {
         var data = {
+            id: this.state.id,
             name: this.state.name,
             address: this.state.address,
             gender: this.state.gender
         }
-        studentService.submitStudentsData(data).then(data => {
-            this.props.history.push('/List');
-        }).catch(function (err) {
-            console.log(err);
-        });
-
-    }
-    fetchStudentData() {
-        let self = this;
-        studentService.getStudentsDataById().then(data => {
-            console.log(data);
-        });
-
-    }
-    logChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+        if (this.selectedId) {
+            studentService.updateStudentsData(this.selectedId, data).then(data => {
+                this.props.history.push('/List');
+            }).catch(function (err) {
+                console.log(err);
+            });
+        } else {
+            studentService.submitStudentsData(data).then(data => {
+                this.props.history.push('/List');
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
     }
 }
 export default Create;
