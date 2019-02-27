@@ -31,6 +31,7 @@ class Create extends Component {
         // Event handlers     
         this.handleSubmit = this.handleSubmit.bind(this)
         this.logChange = this.logChange.bind(this)
+        this.removeValidation = this.removeValidation.bind(this)
     }
     componentDidMount() {
         this.setState({ submitButtonText: 'Submit' });
@@ -93,6 +94,7 @@ class Create extends Component {
         this.setState({
             student
         });
+        this.removeValidation(e);
     }
     validateForm() {
         let student = this.state.student;
@@ -101,20 +103,34 @@ class Create extends Component {
 
         if (!student["name"]) {
             formIsValid = false;
-            errors["name"] = "*Please enter name.";
+            errors["name"] = "*Required";
         }
         if (!student["address"]) {
             formIsValid = false;
-            errors["address"] = "*Please enter adress.";
+            errors["address"] = "*Required";
         }
         if (!student["gender"]) {
             formIsValid = false;
-            errors["gender"] = "*Please select gender.";
+            errors["gender"] = "*Required";
         }
         this.setState({
             errors: errors
         });
         return formIsValid;
+    }
+    removeValidation(e) {
+        let self = this;
+        const type = e.target.name;
+        let student = self.state.student;
+        let errors = self.state.errors;
+        if (!student[type]) {
+            errors[type] = "*Required";
+        } else {
+            errors[type] = "";
+        }
+        this.setState({
+            errors: errors
+        });
     }
     submitStudent() {
         var data = {
