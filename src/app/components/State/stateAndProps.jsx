@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 
 class stateAndProps extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             header: "Header from props...",
-            content: "Content from props..."
+            content: "Content from props...",
+            errors: {
+                name: 'pawan',
+                address: 'modgil',
+                gender: ''
+            }
         }
     }
     render() {
         return (
             <div>
-                <Header headerProp={this.state.header}/>
-                <Content content={this.state.content}/>
+                <div className="errorMsg">{this.state.errors.name}</div>
+                <Header headerProp={this.state.header} />
+                <Content content={this.state.content} />
             </div>
         );
     }
