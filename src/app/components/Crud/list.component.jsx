@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import studentService from '../services/student.service';
 import { FormattedMessage } from 'react-intl';
 import "../../styles/Dashboard.css";
-import ToastrContainer, { Toast, ToastDanger } from 'react-toastr-basic';
+import ToastrContainer, { Toast, ToastDanger,ToastSuccess } from 'react-toastr-basic';
 class List extends Component {
 
     constructor() {
@@ -98,7 +98,7 @@ class List extends Component {
             var idx = students.findIndex(item => item.Id === id);
             students.splice(idx, 1);
             self.setState({ studentData: students });
-            ToastSuccess('Record Deleted');
+            ToastSuccess('Record deleted successfully');
         }).catch(function (err) {
             ToastDanger('Error occurred');
             console.log(err);

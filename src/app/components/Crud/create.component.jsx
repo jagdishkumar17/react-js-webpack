@@ -10,28 +10,25 @@ import ToastrContainer, { Toast, ToastDanger, ToastSuccess } from 'react-toastr-
 class Create extends Component {
     constructor() {
         super();
-        // Student Model Properties
+        // Student Model Properties and Run Time Set Properties ( Buttons text & Url Id)
         this.state = {
             student: {
                 id: '',
                 name: '',
                 address: '',
                 gender: '',
-                genders: [
-                    { value: '', name: 'Select' },
-                    { value: 'Male', name: 'Male' },
-                    { value: 'Female', name: 'Female' }
-                ]
             },
+            genders: [
+                { value: '', name: 'Select' },
+                { value: 'Male', name: 'Male' },
+                { value: 'Female', name: 'Female' }
+            ],
             selectedId: '',
             submitButtonText: '',
             errors: {
-
             },
         }
-
-        // Run Time Set Properties ( Buttons text & Url Id)      
-
+        // Event handlers     
         this.handleSubmit = this.handleSubmit.bind(this)
         this.logChange = this.logChange.bind(this)
     }
@@ -60,7 +57,7 @@ class Create extends Component {
                     <label>Gender</label>
                     <div>
                         <select name='gender' value={this.state.student.gender} onChange={this.logChange}>
-                            {this.state.student.genders.map((e, key) => {
+                            {this.state.genders.map((e, key) => {
                                 return <option key={key} value={e.value}>{e.name}</option>;
                             })}
                         </select>
@@ -84,7 +81,7 @@ class Create extends Component {
         let self = this;
         studentService.getStudentsDataById(id).then(data => {
             if (data) {
-                self.setState({ id: data.Id, name: data.Name, address: data.Address, gender: data.Gender });
+                self.setState({ student: { id: data.Id, name: data.Name, address: data.Address, gender: data.Gender } });
             }
         }).catch(function (err) {
             console.log(err);
@@ -99,7 +96,7 @@ class Create extends Component {
         });
     }
     validateForm() {
-        let student = this.state;
+        let student = this.state.student;
         let errors = {};
         let formIsValid = true;
 
@@ -129,7 +126,7 @@ class Create extends Component {
         }
         if (this.state.selectedId) {
             studentService.updateStudentsData(this.state.selectedId, data).then(data => {
-                ToastSuccess('Record Saved');
+                ToastSuccess('Record updated successfully');
                 this.props.history.push('/List');
             }).catch(function (err) {
                 ToastDanger('Error occurred');
@@ -137,7 +134,7 @@ class Create extends Component {
             });
         } else {
             studentService.submitStudentsData(data).then(data => {
-                ToastSuccess('Record Updated');
+                ToastSuccess('Record inserted successfully');
                 this.props.history.push('/List');
             }).catch(function (err) {
                 ToastDanger('Error occurred');
