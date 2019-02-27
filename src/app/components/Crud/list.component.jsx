@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import studentService from '../services/student.service';
 import { FormattedMessage } from 'react-intl';
 import "../../styles/Dashboard.css";
-import ToastrContainer, { Toast, ToastDanger,ToastSuccess } from 'react-toastr-basic';
+import ToastrContainer, { ToastDanger,ToastSuccess } from 'react-toastr-basic';
 class List extends Component {
 
     constructor() {

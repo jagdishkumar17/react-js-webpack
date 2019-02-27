@@ -5,7 +5,7 @@ import "../../styles/Dashboard.css";
 import '../../styles/App.css';
 
 import studentService from '../services/student.service';
-import ToastrContainer, { Toast, ToastDanger, ToastSuccess } from 'react-toastr-basic';
+import ToastrContainer, { ToastDanger, ToastSuccess } from 'react-toastr-basic';
 
 class Create extends Component {
     constructor() {
@@ -88,7 +88,6 @@ class Create extends Component {
         });;
     }
     logChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
         let student = this.state.student;
         student[e.target.name] = e.target.value;
         this.setState({
