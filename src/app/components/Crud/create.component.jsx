@@ -12,7 +12,7 @@ class Create extends Component {
         super();
         // Student Model Properties
         this.state = {
-            fields: {
+            student: {
                 id: '',
                 name: '',
                 address: '',
@@ -51,16 +51,16 @@ class Create extends Component {
                 <ToastrContainer />
                 <form onSubmit={this.handleSubmit} method="POST">
                     <label>Name</label>
-                    <input className="form-control" value={this.state.fields.name || ''} onChange={this.logChange} name='name' />
+                    <input className="form-control" value={this.state.student.name || ''} onChange={this.logChange} name='name' />
                     <div className="errorMsg">{this.state.errors.name}</div>
                     <label>Address</label>
-                    <textarea className="form-control" value={this.state.fields.address || ''} onChange={this.logChange} name='address' maxLength="1000" />
+                    <textarea className="form-control" value={this.state.student.address || ''} onChange={this.logChange} name='address' maxLength="1000" />
                     <div className="errorMsg">{this.state.errors.address}</div>
 
                     <label>Gender</label>
                     <div>
-                        <select name='gender' value={this.state.fields.gender} onChange={this.logChange}>
-                            {this.state.fields.genders.map((e, key) => {
+                        <select name='gender' value={this.state.student.gender} onChange={this.logChange}>
+                            {this.state.student.genders.map((e, key) => {
                                 return <option key={key} value={e.value}>{e.name}</option>;
                             })}
                         </select>
@@ -92,26 +92,26 @@ class Create extends Component {
     }
     logChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        let fields = this.state.fields;
-        fields[e.target.name] = e.target.value;
+        let student = this.state.student;
+        student[e.target.name] = e.target.value;
         this.setState({
-            fields
-        });        
+            student
+        });
     }
     validateForm() {
-        let fields = this.state;
+        let student = this.state;
         let errors = {};
         let formIsValid = true;
 
-        if (!fields["name"]) {
+        if (!student["name"]) {
             formIsValid = false;
             errors["name"] = "*Please enter name.";
         }
-        if (!fields["address"]) {
+        if (!student["address"]) {
             formIsValid = false;
             errors["address"] = "*Please enter adress.";
         }
-        if (!fields["gender"]) {
+        if (!student["gender"]) {
             formIsValid = false;
             errors["gender"] = "*Please select gender.";
         }
@@ -122,10 +122,10 @@ class Create extends Component {
     }
     submitStudent() {
         var data = {
-            id: this.state.fields.id,
-            name: this.state.fields.name,
-            address: this.state.fields.address,
-            gender: this.state.fields.gender
+            id: this.state.student.id,
+            name: this.state.student.name,
+            address: this.state.student.address,
+            gender: this.state.student.gender
         }
         if (this.state.selectedId) {
             studentService.updateStudentsData(this.state.selectedId, data).then(data => {
