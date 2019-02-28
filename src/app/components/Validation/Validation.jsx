@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/Validation.css';
-
+import '../../sass/style.scss'
 class RegisterForm extends React.Component {
   constructor() {
     super();
@@ -106,6 +106,8 @@ class RegisterForm extends React.Component {
 render() {
   return (
   <div id="main-registration-container">
+    <h1>SCSS working fine</h1>
+
    <div id="register">
       <h3>Registration page</h3>
       <form method="post"  name="userRegistrationForm"  onSubmit= {this.submituserRegistrationForm} >
