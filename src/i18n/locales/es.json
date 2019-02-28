@@ -1,6 +1,9 @@
 {
     "Header.title": "Bienvenido a React Router Tutorial",
     "Header.Dashboard": "Tablero",
+    "Header.EmployeesList": "Lista de empleados",
+    "Header.CreateEmployee": "Crear empleado",
+    "Header.Welcome": "Bienvenido a React CRUD Tutorial",
     "Home.title": "¡Hola CASA!",
     "Home.link": "CASA",
     "Home.description": "Es un hermoso día afuera.",
@@ -8,5 +11,9 @@
     "About.title": "¡Hola ACERCA DE!",
     "About.description": "Es un hermoso día afuera.",
     "User.link": "USUARIO",
-    "Student.addnew": "Añadir nuevo"
+    "Student.addnew": "Añadir nuevo",
+    "List.Name": "Nombre",
+    "List.Gender": "Género",
+    "List.Address": "Dirección",
+    "List.Actions": "Comportamiento"
 }

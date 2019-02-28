@@ -1,6 +1,9 @@
 {
     "Header.title": "React CRUD Example",
-    "Header.Dashboard":"Dashboard",
+    "Header.dashboard": "Dashboard",
+    "Header.EmployeesList": "Employees List",
+    "Header.CreateEmployee": "Create Employee",
+    "Header.Welcome": "Welcome to React CRUD Tutorial",
     "Home.link": "HOME",
     "Home.title": "Hello, HOME!",
     "Home.description": "It's a beautiful day outside.",
@@ -8,5 +11,9 @@
     "About.title": "Hello, About us!",
     "About.description": "It's a beautiful day outside.",
     "User.link": "USER",
-    "Student.addnew":"Add New"
+    "Student.addnew": "Add New",
+    "List.Name": "Name",
+    "List.Gender": "Gender",
+    "List.Address": "Address",
+    "List.Actions": "Actions"
 }

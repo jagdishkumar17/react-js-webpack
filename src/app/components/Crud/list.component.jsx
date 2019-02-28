@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import studentService from '../services/student.service';
 import { FormattedMessage } from 'react-intl';
 import "../../styles/Dashboard.css";
-import ToastrContainer, { ToastDanger,ToastSuccess } from 'react-toastr-basic';
+import ToastrContainer, { ToastDanger, ToastSuccess } from 'react-toastr-basic';
 class List extends Component {
 
     constructor() {
@@ -16,10 +16,10 @@ class List extends Component {
         this.navigateToAddStudent = this.navigateToAddStudent.bind(this);
 
     }
-    componentWillMount() {  
+    componentWillMount() {
         this.fetchStudentData();
     }
-   
+
 
     render() {
         return (
@@ -28,10 +28,10 @@ class List extends Component {
                 <table className='table'>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Gender</th>
-                            <th>Address</th>
-                            <th>Actions</th>
+                            <th><FormattedMessage id="List.Name" defaultMessage="Name" /></th>
+                            <th><FormattedMessage id="List.Gender" defaultMessage="Gender" /></th>
+                            <th><FormattedMessage id="List.Address" defaultMessage="Address" /></th>
+                            <th><FormattedMessage id="List.Actions" defaultMessage="Actions" /></th>
 
                         </tr>
                     </thead>
