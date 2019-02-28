@@ -4,8 +4,8 @@ class Home extends Component {
   render() {
     return (
         <div>
-          <h2><FormattedMessage id="Home.title" defaultMessage="HOME" /></h2>
-          <div><FormattedMessage id="Home.description" defaultMessage="This is the home page" /></div>
+          <h2><FormattedMessage id="HOME.TITLE" defaultMessage="HOME" /></h2>
+          <div><FormattedMessage id="HOME.DESCRIPTION" defaultMessage="This is the home page" /></div>
         </div>
     );
   }
