@@ -28,10 +28,10 @@ class List extends Component {
                 <table className='table'>
                     <thead>
                         <tr>
-                            <th><FormattedMessage id="List.Name" defaultMessage="Name" /></th>
-                            <th><FormattedMessage id="List.Gender" defaultMessage="Gender" /></th>
-                            <th><FormattedMessage id="List.Address" defaultMessage="Address" /></th>
-                            <th><FormattedMessage id="List.Actions" defaultMessage="Actions" /></th>
+                            <th><FormattedMessage id="LIST.NAME" defaultMessage="Name" /></th>
+                            <th><FormattedMessage id="LIST.GENDER" defaultMessage="Gender" /></th>
+                            <th><FormattedMessage id="LIST.ADDRESS" defaultMessage="Address" /></th>
+                            <th><FormattedMessage id="LIST.ACTIONS" defaultMessage="Actions" /></th>
 
                         </tr>
                     </thead>
@@ -54,7 +54,7 @@ class List extends Component {
                     <tbody>
                         <tr>
                             <td>
-                                <FormattedMessage id="Student.addnew" defaultMessage="Add New">
+                                <FormattedMessage id="STUDENT.ADDNEW" defaultMessage="Add New">
                                     {
                                         (msg) =>
                                             (

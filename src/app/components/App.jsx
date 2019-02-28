@@ -36,25 +36,25 @@ class App extends Component {
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <Link to={'/'} className="navbar-brand">
 
-                <FormattedMessage id="Header.title" defaultMessage="React CRUD Example" />
+                <FormattedMessage id="HEADER.TITLE" defaultMessage="React CRUD Example" />
               </Link>
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
                     <Link to={'/'} className="nav-link">
-                      <FormattedMessage id="Header.Dashboard" defaultMessage="Dashboard" />
+                      <FormattedMessage id="HEADER.DASHBOARD" defaultMessage="Dashboard" />
 
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to={'/list'} className="nav-link">
 
-                      <FormattedMessage id="Header.EmployeesList" defaultMessage="Employees List" />
+                      <FormattedMessage id="HEADER.EMPLOYEELIST" defaultMessage="Employees List" />
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to={'/create'} className="nav-link">
-                      <FormattedMessage id="Header.CreateEmployee" defaultMessage="Create Employee" />
+                      <FormattedMessage id="HEADER.CREATEEMPLOYEE" defaultMessage="Create Employee" />
                     </Link>
                   </li>
 
@@ -68,7 +68,7 @@ class App extends Component {
                 </select>
               </div>
             </nav> <br />
-            <h2><FormattedMessage id="Header.Welcome" defaultMessage="Welcome to React CRUD Tutorial" /></h2> <br />
+            <h2><FormattedMessage id="HEADER.WELCOME" defaultMessage="Welcome to React CRUD Tutorial" /></h2> <br />
             <Switch>
               <Route exact path='/create' component={Create} />
               <Route path='/create/:id' component={Create} />
