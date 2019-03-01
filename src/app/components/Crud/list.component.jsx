@@ -2,9 +2,10 @@
 
 import React, { Component } from 'react';
 import studentService from '../services/student.service';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import "../../styles/Dashboard.css";
 import ToastrContainer, { ToastDanger, ToastSuccess } from 'react-toastr-basic';
+import translator from '../../translator.jsx';
 class List extends Component {
 
     constructor() {
@@ -14,16 +15,19 @@ class List extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.navigateToAddStudent = this.navigateToAddStudent.bind(this);
-
+        
+        
     }
     componentWillMount() {
         this.fetchStudentData();
+        
     }
 
 
     render() {
         return (
             <div>
+                {console.log(this.props)}
                 <ToastrContainer />
                 <table className='table'>
                     <thead>
@@ -72,7 +76,7 @@ class List extends Component {
 
     // Handle Delete request for student 
     handleDelete(id) {
-        if (confirm('Are you sure you want to delete this student?')) {
+        if (confirm(translator(this,'APP.ALERT'))) {
             this.deleteStudentData(id);
         }
     }
@@ -107,4 +111,4 @@ class List extends Component {
     }
 
 }
-export default List;
+export default injectIntl(List);
