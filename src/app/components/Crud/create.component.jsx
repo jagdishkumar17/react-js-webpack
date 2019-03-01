@@ -3,15 +3,16 @@
 import React, { Component } from 'react';
 import "../../styles/Dashboard.css";
 import '../../styles/App.css';
-
 import studentService from '../services/student.service';
-import ToastrContainer, { ToastDanger, ToastSuccess } from 'react-toastr-basic';
+import Spinner from '../Spinner/Spinner.jsx'
 
+import ToastrContainer, { ToastDanger, ToastSuccess } from 'react-toastr-basic';
 class Create extends Component {
     constructor() {
         super();
         // Student Model Properties and Run Time Set Properties ( Buttons text & Url Id)
         this.state = {
+            loading: true,
             student: {
                 id: '',
                 name: '',
@@ -47,6 +48,7 @@ class Create extends Component {
         return (
             <div className="container register-form" >
                 <ToastrContainer />
+
                 <form onSubmit={this.handleSubmit} method="POST">
                     <label>Name</label>
                     <input className="form-control" value={this.state.student.name || ''} onChange={this.logChange} name='name' />
@@ -68,6 +70,7 @@ class Create extends Component {
                     <div className="submit-section paddingtop10">
                         <input type="submit" value={this.state.submitButtonText || ''} />
                     </div>
+                    <Spinner loading={this.state.loading}></Spinner>
                 </form>
             </div>
         )

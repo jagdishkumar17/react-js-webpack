@@ -1,5 +1,9 @@
 @import "./variable.scss";
 
-h1, h2 {
-    color: $primaryColor;
+
+  .coverAll
+  {   
+    position: absolute !important;
+    left: 48% !important;
+    top: 50% !important;
   }
