@@ -1,6 +1,6 @@
 import React from "react";
-import { RingLoader } from 'react-spinners';
-import '../../sass/style.scss'
+import { HashLoader } from 'react-spinners';
+import '../sass/style.scss'
 class Spinner extends React.Component {
 
    constructor(props) {
@@ -11,9 +11,10 @@ class Spinner extends React.Component {
    render() {
       return (
          <div className='coverAll'>
-            <RingLoader
-               color={'#E42884'}
+            <HashLoader
+               color={'#36D7B7'}
                loading={this.props.loading}
+               size={70}
             />
          </div>
       );
