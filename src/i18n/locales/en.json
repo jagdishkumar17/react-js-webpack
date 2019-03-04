@@ -15,5 +15,6 @@
     "LIST.NAME": "Name",
     "LIST.GENDER": "Gender",
     "LIST.ADDRESS": "Address",
-    "LIST.ACTIONS": "Actions"
+    "LIST.ACTIONS": "Actions",
+    "APP.ALERT": "Are you sure you want to delete this student?"
 }

@@ -15,5 +15,6 @@
     "LIST.NAME": "Nombre",
     "LIST.GENDER": "Género",
     "LIST.ADDRESS": "Dirección",
-    "LIST.ACTIONS": "Comportamiento"
+    "LIST.ACTIONS": "Comportamiento",
+    "APP.ALERT": "¿Estás seguro de que quieres eliminar a este estudiante?"
 }
