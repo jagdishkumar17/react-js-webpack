@@ -3,15 +3,16 @@
 import React, { Component } from 'react';
 import "../../styles/Dashboard.css";
 import '../../styles/App.css';
-
 import studentService from '../services/student.service';
-import ToastrContainer, { ToastDanger, ToastSuccess } from 'react-toastr-basic';
+import Spinner from '../../Spinner/Spinner.jsx'
 
+import ToastrContainer, { ToastDanger, ToastSuccess } from 'react-toastr-basic';
 class Create extends Component {
     constructor() {
         super();
         // Student Model Properties and Run Time Set Properties ( Buttons text & Url Id)
         this.state = {
+            loading: false,
             student: {
                 id: '',
                 name: '',
@@ -47,6 +48,7 @@ class Create extends Component {
         return (
             <div className="container register-form" >
                 <ToastrContainer />
+
                 <form onSubmit={this.handleSubmit} method="POST">
                     <label>Name</label>
                     <input className="form-control" value={this.state.student.name || ''} onChange={this.logChange} name='name' />
@@ -68,6 +70,7 @@ class Create extends Component {
                     <div className="submit-section paddingtop10">
                         <input type="submit" value={this.state.submitButtonText || ''} />
                     </div>
+                    <Spinner loading={this.state.loading}></Spinner>
                 </form>
             </div>
         )
@@ -79,13 +82,16 @@ class Create extends Component {
         }
     }
     fetchStudentDataById(id) {
+        this.setSpinner(true);
         let self = this;
         studentService.getStudentsDataById(id).then(data => {
             if (data) {
                 self.setState({ student: { id: data.Id, name: data.Name, address: data.Address, gender: data.Gender } });
             }
+            self.setSpinner(false);
         }).catch(function (err) {
             console.log(err);
+            this.setSpinner(false);
         });;
     }
     logChange(e) {
@@ -133,6 +139,8 @@ class Create extends Component {
         });
     }
     submitStudent() {
+        this.setSpinner(true);
+        let self = this;
         var data = {
             id: this.state.student.id,
             name: this.state.student.name,
@@ -140,23 +148,33 @@ class Create extends Component {
             gender: this.state.student.gender
         }
         if (this.state.selectedId) {
+
             studentService.updateStudentsData(this.state.selectedId, data).then(data => {
+                self.setSpinner(false);
                 ToastSuccess('Record updated successfully');
                 this.props.history.push('/List');
+
             }).catch(function (err) {
+                self.setSpinner(false);
                 ToastDanger('Error occurred');
                 console.log(err);
+
             });
         } else {
             studentService.submitStudentsData(data).then(data => {
+                this.setSpinner(false);
                 ToastSuccess('Record inserted successfully');
                 this.props.history.push('/List');
             }).catch(function (err) {
                 ToastDanger('Error occurred');
                 console.log(err);
+                self.setSpinner(false);
             });
         }
 
     }
+    setSpinner(type) {
+        this.setState({ loading: type });
+    };
 }
 export default Create;
