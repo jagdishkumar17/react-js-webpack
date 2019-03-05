@@ -6,13 +6,15 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import "../../styles/Dashboard.css";
 import ToastrContainer, { ToastDanger, ToastSuccess } from 'react-toastr-basic';
 import translator from '../../translator.jsx';
-import Spinner from '../../Spinner/Spinner.jsx'
+import '../../sass/style.scss'
+import config from '../../../../config';
+var url = config['BaseUrl'] + "/api/Students";
 
 class List extends Component {
 
     constructor() {
         super();
-        this.state = { loading: false, studentData: [] };
+        this.state = {  studentData: [] };
         // This binding is necessary to make "this" work in the callback  
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
@@ -72,7 +74,6 @@ class List extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <Spinner loading={this.state.loading}></Spinner>
             </div>
         )
     }
@@ -92,37 +93,28 @@ class List extends Component {
         this.props.history.push("/Create/");
     }
     fetchStudentData() {
-        let self = this;
-        self.setSpinner(true);
-        studentService.getStudentsData().then(data => {
+         let self = this;
+        studentService.getStudentData().then(data => {
             self.setState({ studentData: data });
-            self.setSpinner(false);
         }).catch(function (err) {
             console.log(err);
-            self.setSpinner(false);
         });
-
+      
     }
     deleteStudentData(id) {
         let self = this;
-        self.setSpinner(true);
         studentService.deleteStudentsData(id).then(data => {
             var students = self.state.studentData;
             var idx = students.findIndex(item => item.Id === id);
             students.splice(idx, 1);
             self.setState({ studentData: students });
-            self.setSpinner(false);
             ToastSuccess('Record deleted successfully');
         }).catch(function (err) {
-            self.setSpinner(false);
             ToastDanger('Error occurred');
             console.log(err);
         });
 
-    }
-    setSpinner(type) {
-        this.setState({ loading: type });
-    };
+    }    
 
 }
 export default injectIntl(List);

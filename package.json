@@ -26,6 +26,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.0",
     "html-loader": "^0.5.5",
