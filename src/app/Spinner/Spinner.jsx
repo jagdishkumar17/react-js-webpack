@@ -11,7 +11,7 @@ class Spinner extends React.Component {
    render() {
       return (
          <div className='coverAll'>
-            <HashLoader
+             <HashLoader
                color={'#36D7B7'}
                loading={this.props.loading}
                size={70}
